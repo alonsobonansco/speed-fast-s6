@@ -5,7 +5,7 @@ public class PedidoComida extends Pedido {
     private boolean mochilaEnBuenEstado;
 
     public PedidoComida(String idPedido, String direccionEntrega) {
-        super("PEDIDO COMIDA", idPedido, direccionEntrega);
+        super("COMIDA", idPedido, direccionEntrega);
 
     }
 

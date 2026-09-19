@@ -2,16 +2,18 @@ package cl.duoc.speedfast.controller;
 
 import cl.duoc.speedfast.model.Pedido;
 import cl.duoc.speedfast.model.PedidoComida;
+import cl.duoc.speedfast.model.PedidoEncomienda;
+import cl.duoc.speedfast.model.PedidoExpress;
 import cl.duoc.speedfast.view.VentanaRegistroPedido;
 
 import java.util.List;
 
-public class ControladorRegistroPedido {
+public class ControladorRegistro {
 
     private final VentanaRegistroPedido ventanaRegistroPedido;
     private final List<Pedido> listaPedidos;
 
-    public ControladorRegistroPedido(VentanaRegistroPedido ventanaRegistroPedido, List<Pedido> listaPedidos) {
+    public ControladorRegistro(VentanaRegistroPedido ventanaRegistroPedido, List<Pedido> listaPedidos) {
         this.ventanaRegistroPedido = ventanaRegistroPedido;
         this.listaPedidos = listaPedidos;
 
@@ -34,10 +36,12 @@ public class ControladorRegistroPedido {
                 return;
             }
 
-            Pedido nuevoPedido = new PedidoComida(
-                    idPedido,
-                    direccionEntrega
-            );
+            Pedido nuevoPedido = switch (tipoPedido.toUpperCase()) {
+                case "COMIDA" -> new PedidoComida(idPedido, direccionEntrega);
+                case "EXPRESS" -> new PedidoExpress(idPedido, direccionEntrega);
+                case "ENCOMIENDA" -> new PedidoEncomienda(idPedido, direccionEntrega);
+                default -> throw new IllegalArgumentException("Tipo de pedido no válido.");
+            };
 
             listaPedidos.add(nuevoPedido);
 

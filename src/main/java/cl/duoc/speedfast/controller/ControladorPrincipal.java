@@ -1,0 +1,43 @@
+package cl.duoc.speedfast.controller;
+
+import cl.duoc.speedfast.model.Pedido;
+import cl.duoc.speedfast.view.VentanaPrincipal;
+import cl.duoc.speedfast.view.VentanaRegistroPedido;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ControladorPrincipal {
+
+    private final VentanaPrincipal ventanaPrincipal;
+    private final List<Pedido> listaPedidos;
+    private VentanaRegistroPedido ventanaRegistroPedido = null;
+
+    public ControladorPrincipal(VentanaPrincipal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.listaPedidos = new ArrayList<>();
+
+        inicializarListeners();
+    }
+
+    private void inicializarListeners() {
+        ventanaPrincipal.addRegistrarPedidoListener(e -> {
+            if (ventanaRegistroPedido == null || !ventanaRegistroPedido.isDisplayable()) {
+                ventanaRegistroPedido = new VentanaRegistroPedido();
+
+                new ControladorRegistro(ventanaRegistroPedido, listaPedidos);
+
+                ventanaRegistroPedido.setVisible(true);
+            } else {
+                ventanaRegistroPedido.toFront();
+                ventanaRegistroPedido.requestFocus();
+            }
+        });
+
+        /*ventanaPrincipal.addListarPedidosListener(e -> {
+            ventanaPrincipal.mostrarListaPedidos(listaPedidos)
+        });*/
+    }
+
+
+}
