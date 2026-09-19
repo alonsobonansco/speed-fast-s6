@@ -16,7 +16,7 @@ public class VentanaRegistroPedido extends JFrame {
 
     public VentanaRegistroPedido() {
         setTitle("SpeedFast App");
-        setSize(450, 350);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
@@ -101,7 +101,7 @@ public class VentanaRegistroPedido extends JFrame {
     public void limpiarFormulario() {
         idTextField.setText("");
         direccionTextField.setText("");
-        tipoComboBox.setSelectedIndex(0);
+        //tipoComboBox.setSelectedIndex(0);
         idTextField.requestFocus();
     }
 }

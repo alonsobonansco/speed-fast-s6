@@ -1,6 +1,7 @@
 package cl.duoc.speedfast.controller;
 
 import cl.duoc.speedfast.model.Pedido;
+import cl.duoc.speedfast.view.VentanaListaPedidos;
 import cl.duoc.speedfast.view.VentanaPrincipal;
 import cl.duoc.speedfast.view.VentanaRegistroPedido;
 
@@ -12,6 +13,7 @@ public class ControladorPrincipal {
     private final VentanaPrincipal ventanaPrincipal;
     private final List<Pedido> listaPedidos;
     private VentanaRegistroPedido ventanaRegistroPedido = null;
+    private VentanaListaPedidos ventanaListaPedidos = null;
 
     public ControladorPrincipal(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
@@ -34,9 +36,17 @@ public class ControladorPrincipal {
             }
         });
 
-        /*ventanaPrincipal.addListarPedidosListener(e -> {
-            ventanaPrincipal.mostrarListaPedidos(listaPedidos)
-        });*/
+        ventanaPrincipal.addListarPedidosListener(e -> {
+            if (ventanaListaPedidos == null || !ventanaListaPedidos.isDisplayable()) {
+                ventanaListaPedidos = new VentanaListaPedidos();
+            }
+
+            new ControladorLista(ventanaListaPedidos, listaPedidos);
+
+            ventanaListaPedidos.setVisible(true);
+            ventanaListaPedidos.toFront();
+            ventanaListaPedidos.requestFocus();
+        });
     }
 
 
