@@ -1,9 +1,16 @@
 package cl.duoc.speedfast;
 
+import cl.duoc.speedfast.view.VentanaPrincipal;
+
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
 
-
+        SwingUtilities.invokeLater(() -> {
+            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+            ventanaPrincipal.setVisible(true);
+        });
 
 
        /* Paso 4: Integra la navegación entre ventanas
