@@ -21,7 +21,7 @@ public class ControladorRegistro {
     }
 
     private void inicializarListeners() {
-        ventanaRegistroPedido.addCancelarListener(e -> ventanaRegistroPedido.cerrarVentana());
+        ventanaRegistroPedido.addVolverAtrasListener(e -> ventanaRegistroPedido.cerrarVentana());
         ventanaRegistroPedido.addGuardarListener(e -> procesarGuardado());
     }
 

@@ -12,7 +12,7 @@ public class VentanaRegistroPedido extends JFrame {
     private JComboBox<String> tipoComboBox;
 
     private JButton guardarButton;
-    private JButton cancelarButton;
+    private JButton atrasButton;
 
     public VentanaRegistroPedido() {
         setTitle("SpeedFast App");
@@ -39,7 +39,7 @@ public class VentanaRegistroPedido extends JFrame {
         tipoComboBox = new JComboBox<>(tipos);
 
         guardarButton = new JButton("Guardar");
-        cancelarButton = new JButton("Cancelar");
+        atrasButton = new JButton("Atrás");
     }
 
     public void construirLayout() {
@@ -61,7 +61,7 @@ public class VentanaRegistroPedido extends JFrame {
 
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
         panelBotones.add(guardarButton);
-        panelBotones.add(cancelarButton);
+        panelBotones.add(atrasButton);
 
         add(panelBotones, BorderLayout.SOUTH);
     }
@@ -86,8 +86,8 @@ public class VentanaRegistroPedido extends JFrame {
         guardarButton.addActionListener(listener);
     }
 
-    public void addCancelarListener(ActionListener listener) {
-        cancelarButton.addActionListener(listener);
+    public void addVolverAtrasListener(ActionListener listener) {
+        atrasButton.addActionListener(listener);
     }
 
     public void mostrarMensajeConfirmacion(String mensaje) {
@@ -101,7 +101,6 @@ public class VentanaRegistroPedido extends JFrame {
     public void limpiarFormulario() {
         idTextField.setText("");
         direccionTextField.setText("");
-        //tipoComboBox.setSelectedIndex(0);
         idTextField.requestFocus();
     }
 }
