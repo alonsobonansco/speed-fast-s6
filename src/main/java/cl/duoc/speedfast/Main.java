@@ -15,7 +15,7 @@ public class Main {
         });*/
 
         SwingUtilities.invokeLater(() -> {
-            VentanaListaPedidos vrp = new VentanaListaPedidos();
+            VentanaRegistroPedido vrp = new VentanaRegistroPedido();
             vrp.setVisible(true);
         });
 

@@ -2,11 +2,11 @@ package cl.duoc.speedfast.model;
 
 public class PedidoComida extends Pedido {
 
-    private final boolean mochilaEnBuenEstado;
+    private boolean mochilaEnBuenEstado;
 
-    public PedidoComida(String idPedido, String direccionEntrega, double distanciaKm, boolean mochilaEnBuenEstado) {
-        super("PEDIDO COMIDA", idPedido, direccionEntrega, distanciaKm);
-        this.mochilaEnBuenEstado = mochilaEnBuenEstado;
+    public PedidoComida(String idPedido, String direccionEntrega) {
+        super("PEDIDO COMIDA", idPedido, direccionEntrega);
+
     }
 
     @Override
