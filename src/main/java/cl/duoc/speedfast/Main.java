@@ -1,5 +1,6 @@
 package cl.duoc.speedfast;
 
+import cl.duoc.speedfast.view.VentanaListaPedidos;
 import cl.duoc.speedfast.view.VentanaPrincipal;
 import cl.duoc.speedfast.view.VentanaRegistroPedido;
 
@@ -14,7 +15,7 @@ public class Main {
         });*/
 
         SwingUtilities.invokeLater(() -> {
-            VentanaRegistroPedido vrp = new VentanaRegistroPedido();
+            VentanaListaPedidos vrp = new VentanaListaPedidos();
             vrp.setVisible(true);
         });
 
