@@ -1,9 +1,7 @@
 package cl.duoc.speedfast.controller;
 
 import cl.duoc.speedfast.model.Pedido;
-import cl.duoc.speedfast.view.VentanaListaPedidos;
-import cl.duoc.speedfast.view.VentanaPrincipal;
-import cl.duoc.speedfast.view.VentanaRegistroPedido;
+import cl.duoc.speedfast.view.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +45,11 @@ public class ControladorPrincipal {
             ventanaListaPedidos.toFront();
             ventanaListaPedidos.requestFocus();
         });
+
+        ventanaPrincipal.addIniciarEntregasListener(e -> {
+            ControladorPedidos controladorPedidos = new ControladorPedidos();
+            controladorPedidos.setLogListener(ventanaPrincipal::appendLog);
+            controladorPedidos.iniciarSimulacionReparto(listaPedidos);
+        });
     }
-
-
 }
