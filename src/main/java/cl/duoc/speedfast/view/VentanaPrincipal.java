@@ -83,7 +83,14 @@ public class VentanaPrincipal extends JFrame {
         listarPedidosButton.addActionListener(listener);
     }
 
-    public void addAsignarRepartidorListener(ActionListener listener) {
+    public void addIniciarEntregasListener(ActionListener listener) {
         asignarRepartidorButton.addActionListener(listener);
+    }
+
+    public void appendLog(String mensaje) {
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            logTextArea.append(mensaje + "\n");
+            logTextArea.setCaretPosition(logTextArea.getDocument().getLength());
+        });
     }
 }

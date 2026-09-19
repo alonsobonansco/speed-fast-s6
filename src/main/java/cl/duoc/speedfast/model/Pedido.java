@@ -6,6 +6,7 @@ public abstract class Pedido {
     private final String idPedido;
     private String direccionEntrega;
     private boolean pedidoActivo = true;
+    private String estadoPedido = "PENDIENTE";
 
     public Pedido(String tipoPedido, String idPedido, String direccionEntrega) {
         if (idPedido == null || idPedido.isBlank()) {
@@ -77,5 +78,13 @@ public abstract class Pedido {
 
     public boolean isPedidoActivo() {
         return pedidoActivo;
+    }
+
+    public String getEstadoPedido() {
+        return estadoPedido;
+    }
+
+    public void setEstadoPedido(String estadoPedido) {
+        this.estadoPedido = estadoPedido;
     }
 }

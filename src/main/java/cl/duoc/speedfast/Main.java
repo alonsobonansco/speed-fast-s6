@@ -13,10 +13,5 @@ public class Main {
             new ControladorPrincipal(ventanaPrincipal);
             ventanaPrincipal.setVisible(true);
         });
-
-       /* Paso 4: Integra la navegación entre ventanas
-             Desde VentanaPrincipal, botones que abren VentanaRegistroPedido y
-            VentanaListaPedidos
-             Comparte datos mediante un controlador o lista común*/
     }
 }

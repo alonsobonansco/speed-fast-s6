@@ -14,6 +14,10 @@ public class ControladorPedidos {
     private final BlockingQueue<Pedido> pedidosPendientes = new LinkedBlockingQueue<>();
     private LogListener logListener;
 
+    public void setLogListener(LogListener logListener) {
+        this.logListener = logListener;
+    }
+
     public void iniciarSimulacionReparto(List<Pedido> listaPedidos) {
         if (listaPedidos == null || listaPedidos.isEmpty()) {
             escribirMensaje("[AVISO] No hay pedidos registrados en el sistema para despachar.");
@@ -24,7 +28,10 @@ public class ControladorPedidos {
 
         pedidosPendientes.clear();
         for (Pedido pedido : listaPedidos) {
-            agregarPedido(pedido);
+            if (pedido.getEstadoPedido().equalsIgnoreCase("PENDIENTE")) {
+                agregarPedido(pedido);
+            }
+
         }
 
         String[] nombresRepartidores = {"Juan", "María", "Carlos"};
@@ -44,7 +51,7 @@ public class ControladorPedidos {
         return pedidosPendientes.poll();
     }
 
-    public void escribirMensaje(String mensaje) {
+    public synchronized void escribirMensaje(String mensaje) {
         if (logListener != null) {
             logListener.onLog(mensaje);
         }
