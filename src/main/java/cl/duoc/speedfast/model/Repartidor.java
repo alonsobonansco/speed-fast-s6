@@ -1,6 +1,7 @@
 package cl.duoc.speedfast.model;
 
 public class Repartidor {
+
     private final String nombreRepartidor;
 
     public Repartidor(String nombreRepartidor) {

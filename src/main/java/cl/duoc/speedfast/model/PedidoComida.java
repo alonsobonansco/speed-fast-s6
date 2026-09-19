@@ -1,6 +1,7 @@
 package cl.duoc.speedfast.model;
 
 public class PedidoComida extends Pedido {
+
     private final boolean mochilaEnBuenEstado;
 
     public PedidoComida(String idPedido, String direccionEntrega, double distanciaKm, boolean mochilaEnBuenEstado) {

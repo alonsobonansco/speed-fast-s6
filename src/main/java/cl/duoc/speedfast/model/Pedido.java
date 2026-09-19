@@ -1,6 +1,7 @@
 package cl.duoc.speedfast.model;
 
 public abstract class Pedido {
+
     private final String tipoPedido;
     private final String idPedido;
     private String direccionEntrega;
