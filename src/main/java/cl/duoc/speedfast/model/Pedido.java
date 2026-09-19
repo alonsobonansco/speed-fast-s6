@@ -5,20 +5,16 @@ public abstract class Pedido {
     private final String tipoPedido;
     private final String idPedido;
     private String direccionEntrega;
-    private final double distanciaKm;
     private boolean pedidoActivo = true;
 
-    public Pedido(String tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
+    public Pedido(String tipoPedido, String idPedido, String direccionEntrega) {
         if (idPedido == null || idPedido.isBlank()) {
             throw new IllegalArgumentException("El ID del pedido no puede estar vacío.");
         }
-        if (distanciaKm <= 0) {
-            throw new IllegalArgumentException("La distancia debe ser válida.");
-        }
+
         this.tipoPedido = tipoPedido;
         this.idPedido = idPedido;
         setDireccionEntrega(direccionEntrega);
-        this.distanciaKm = distanciaKm;
     }
 
     /*@Override
@@ -54,8 +50,7 @@ public abstract class Pedido {
                 Tiempo estimado de entrega: %d minutos
                 """.formatted(
                 getTipoPedido(), getIdPedido(),
-                getDireccionEntrega(),
-                getDistanciaKm()
+                getDireccionEntrega()
         );
 
         System.out.println(textoResumen);
@@ -71,10 +66,6 @@ public abstract class Pedido {
 
     public String getDireccionEntrega() {
         return direccionEntrega;
-    }
-
-    public double getDistanciaKm() {
-        return distanciaKm;
     }
 
     public void setDireccionEntrega(String direccionEntrega) {

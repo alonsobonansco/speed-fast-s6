@@ -16,7 +16,7 @@ public class VentanaRegistroPedido extends JFrame {
 
     public VentanaRegistroPedido() {
         setTitle("SpeedFast App");
-        setSize(450, 350);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
@@ -90,12 +90,18 @@ public class VentanaRegistroPedido extends JFrame {
         cancelarButton.addActionListener(listener);
     }
 
+    public void mostrarMensajeConfirmacion(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Pedido registrado", JOptionPane.INFORMATION_MESSAGE);
+    }
 
-    /*Clase VentanaRegistroPedido (JFrame) con campos:
-    o ID, Dirección, Tipo (JComboBox: comida, encomienda, express)
+    public void mostrarMensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-     Botón Guardar que:
-    o Valide campos
-    o Cree y agregue un Pedido a la lista/controlador
-    o Muestre confirmación con JOptionPane*/
+    public void limpiarFormulario() {
+        idTextField.setText("");
+        direccionTextField.setText("");
+        //tipoComboBox.setSelectedIndex(0);
+        idTextField.requestFocus();
+    }
 }
