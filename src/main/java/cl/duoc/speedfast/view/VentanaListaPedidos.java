@@ -32,7 +32,7 @@ public class VentanaListaPedidos extends JFrame {
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
         tituloLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 5, 10));
 
-        String[] columnas = {"ID Pedido", "Dirección Entrega", "Tipo Pedido", "Estado"};
+        String[] columnas = {"ID Pedido", "Dirección Entrega", "Tipo Pedido", "Detalle", "Estado"};
         tablaModel = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -78,6 +78,7 @@ public class VentanaListaPedidos extends JFrame {
                     pedido.getIdPedido(),
                     pedido.getDireccionEntrega(),
                     pedido.getTipoPedido(),
+                    "N/A",
                     pedido.getEstadoPedido()
             };
 

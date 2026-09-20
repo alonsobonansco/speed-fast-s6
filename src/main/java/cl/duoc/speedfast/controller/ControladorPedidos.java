@@ -27,11 +27,16 @@ public class ControladorPedidos {
         escribirMensaje("\n --- INICIANDO REPARTO CONCURRENTE --- ");
 
         pedidosPendientes.clear();
+
         for (Pedido pedido : listaPedidos) {
             if (pedido.getEstadoPedido().equalsIgnoreCase("PENDIENTE")) {
-                agregarPedido(pedido);
-            }
 
+                if (pedido.validarPedido()) {
+                    agregarPedido(pedido);
+                } else {
+                    escribirMensaje("[ERROR] Pedido #" + pedido.getIdPedido() + " no cumple con los requisitos de validación y será omitido.");
+                }
+            }
         }
 
         String[] nombresRepartidores = {"Juan", "María", "Carlos"};

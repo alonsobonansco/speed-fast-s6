@@ -1,6 +1,6 @@
 package cl.duoc.speedfast.model;
 
-public abstract class Pedido {
+public abstract class Pedido implements Despachable, Cancelable {
 
     private final String tipoPedido;
     private final String idPedido;
@@ -18,7 +18,7 @@ public abstract class Pedido {
         setDireccionEntrega(direccionEntrega);
     }
 
-    /*@Override
+    @Override
     public void despachar() {
         if (!pedidoActivo) {
             System.out.println("No se puede despachar un pedido cancelado.\n");
@@ -36,26 +36,10 @@ public abstract class Pedido {
         }
 
         pedidoActivo = false;
-    }*/
+        estadoPedido = "CANCELADO";
+    }
 
     public abstract boolean validarPedido();
-
-    public void mostrarResumen() {
-        String textoResumen = """
-                \n===================
-                %s #%s
-                ===================
-                
-                Dirección: %s
-                Distancia: %.1f km
-                Tiempo estimado de entrega: %d minutos
-                """.formatted(
-                getTipoPedido(), getIdPedido(),
-                getDireccionEntrega()
-        );
-
-        System.out.println(textoResumen);
-    }
 
     public String getTipoPedido() {
         return tipoPedido;
@@ -87,4 +71,6 @@ public abstract class Pedido {
     public void setEstadoPedido(String estadoPedido) {
         this.estadoPedido = estadoPedido;
     }
+
+    public abstract String getDetalleEspecifico();
 }

@@ -37,9 +37,9 @@ public class ControladorRegistro {
             }
 
             Pedido nuevoPedido = switch (tipoPedido.toUpperCase()) {
-                case "COMIDA" -> new PedidoComida(idPedido, direccionEntrega);
-                case "EXPRESS" -> new PedidoExpress(idPedido, direccionEntrega);
-                case "ENCOMIENDA" -> new PedidoEncomienda(idPedido, direccionEntrega);
+                case "COMIDA" -> new PedidoComida(idPedido, direccionEntrega, true);
+                case "EXPRESS" -> new PedidoExpress(idPedido, direccionEntrega, 10.0);
+                case "ENCOMIENDA" -> new PedidoEncomienda(idPedido, direccionEntrega, 20.0);
                 default -> throw new IllegalArgumentException("Tipo de pedido no válido.");
             };
 
