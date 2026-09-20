@@ -8,13 +8,13 @@ public class VentanaPrincipal extends JFrame {
 
     private JButton registrarPedidoButton;
     private JButton listarPedidosButton;
-    private JButton asignarRepartidorButton;
+    private JButton iniciarEntregasButton;
     private JLabel tituloLabel;
     private JTextArea logTextArea;
 
     public VentanaPrincipal() {
         setTitle("SpeedFast App");
-        setSize(600, 400);
+        setSize(700, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -32,22 +32,28 @@ public class VentanaPrincipal extends JFrame {
 
         registrarPedidoButton = new JButton("Registrar Pedido");
         listarPedidosButton = new JButton("Listar Pedidos");
-        asignarRepartidorButton = new JButton("Asignar Repartidor");
+        iniciarEntregasButton = new JButton("Iniciar Entregas");
+
+        Font fuenteBotones = new Font("Arial", Font.BOLD, 15);
+        registrarPedidoButton.setFont(fuenteBotones);
+        listarPedidosButton.setFont(fuenteBotones);
+        iniciarEntregasButton.setFont(fuenteBotones);
 
         Dimension botonDimension = new Dimension(200, 40);
         registrarPedidoButton.setPreferredSize(botonDimension);
         listarPedidosButton.setPreferredSize(botonDimension);
-        asignarRepartidorButton.setPreferredSize(botonDimension);
+        iniciarEntregasButton.setPreferredSize(botonDimension);
 
         logTextArea = new JTextArea();
         logTextArea.setEditable(false);
-        logTextArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        logTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
 
 
     private void construirLayout() {
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new GridBagLayout());
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 0, 30, 0));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridy = 0;
@@ -59,20 +65,22 @@ public class VentanaPrincipal extends JFrame {
         panelBotones.add(listarPedidosButton, gbc);
 
         gbc.gridx = 2;
-        panelBotones.add(asignarRepartidorButton, gbc);
+        panelBotones.add(iniciarEntregasButton, gbc);
 
-        add(panelBotones, BorderLayout.CENTER);
-        add(tituloLabel, BorderLayout.NORTH);
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.add(tituloLabel, BorderLayout.NORTH);
+        panelSuperior.add(panelBotones, BorderLayout.CENTER);
 
         JScrollPane scrollPane = new JScrollPane(logTextArea);
-        scrollPane.setPreferredSize(new Dimension(760, 220)); // Altura fija para la sección de texto
+        scrollPane.setPreferredSize(new Dimension(0, 320));
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         JPanel panelInferior = new JPanel(new BorderLayout());
-        panelInferior.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20)); // Margen externo del scroll
+        panelInferior.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
         panelInferior.add(scrollPane, BorderLayout.CENTER);
 
-        add(panelInferior, BorderLayout.SOUTH);
+        add(panelSuperior, BorderLayout.NORTH);
+        add(panelInferior, BorderLayout.CENTER);
     }
 
     public void addRegistrarPedidoListener(ActionListener listener) {
@@ -84,7 +92,7 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public void addIniciarEntregasListener(ActionListener listener) {
-        asignarRepartidorButton.addActionListener(listener);
+        iniciarEntregasButton.addActionListener(listener);
     }
 
     public void appendLog(String mensaje) {

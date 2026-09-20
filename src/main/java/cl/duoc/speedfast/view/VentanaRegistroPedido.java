@@ -16,7 +16,7 @@ public class VentanaRegistroPedido extends JFrame {
 
     public VentanaRegistroPedido() {
         setTitle("SpeedFast App");
-        setSize(600, 400);
+        setSize(700, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));

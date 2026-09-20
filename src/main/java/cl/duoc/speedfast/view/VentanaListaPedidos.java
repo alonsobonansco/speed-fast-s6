@@ -17,7 +17,7 @@ public class VentanaListaPedidos extends JFrame {
 
     public VentanaListaPedidos() {
         setTitle("Lista de Pedidos");
-        setSize(600, 400);
+        setSize(700, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 15));
