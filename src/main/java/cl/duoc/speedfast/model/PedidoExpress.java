@@ -6,7 +6,7 @@ public class PedidoExpress extends Pedido {
     private final double distanciaKm;
 
     public PedidoExpress(String idPedido, String direccionEntrega, double distanciaKm) {
-        super("EXPRESS", idPedido, direccionEntrega);
+        super(TipoPedido.EXPRESS, idPedido, direccionEntrega);
         this.distanciaKm = distanciaKm;
     }
 

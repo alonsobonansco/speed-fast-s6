@@ -2,13 +2,13 @@ package cl.duoc.speedfast.model;
 
 public abstract class Pedido implements Cancelable {
 
-    private final String tipoPedido;
+    private TipoPedido tipoPedido;
     private final String idPedido;
     private String direccionEntrega;
     private boolean pedidoActivo = true;
-    private String estadoPedido = "PENDIENTE";
+    private EstadoPedido estadoPedido = EstadoPedido.PENDIENTE;
 
-    public Pedido(String tipoPedido, String idPedido, String direccionEntrega) {
+    public Pedido(TipoPedido tipoPedido, String idPedido, String direccionEntrega) {
         if (idPedido == null || idPedido.isBlank()) {
             throw new IllegalArgumentException("El ID del pedido no puede estar vacío.");
         }
@@ -25,12 +25,12 @@ public abstract class Pedido implements Cancelable {
         }
 
         pedidoActivo = false;
-        estadoPedido = "CANCELADO";
+        estadoPedido = EstadoPedido.CANCELADO;
     }
 
     public abstract boolean validarPedido();
 
-    public String getTipoPedido() {
+    public TipoPedido getTipoPedido() {
         return tipoPedido;
     }
 
@@ -49,11 +49,11 @@ public abstract class Pedido implements Cancelable {
         this.direccionEntrega = direccionEntrega;
     }
 
-    public String getEstadoPedido() {
+    public EstadoPedido getEstadoPedido() {
         return estadoPedido;
     }
 
-    public void setEstadoPedido(String estadoPedido) {
+    public void setEstadoPedido(EstadoPedido estadoPedido) {
         this.estadoPedido = estadoPedido;
     }
 

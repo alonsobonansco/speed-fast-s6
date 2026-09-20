@@ -5,6 +5,8 @@ import cl.duoc.speedfast.model.Pedido;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static cl.duoc.speedfast.model.EstadoPedido.ENTREGADO;
+
 public class Repartidor implements Runnable {
 
     private final String nombreRepartidor;
@@ -38,7 +40,7 @@ public class Repartidor implements Runnable {
                 Thread.sleep(calcularTiempoAleatorio(1000, 1000));
 
                 // 🚀 NUEVO: El pedido pasa a estar entregado
-                pedido.setEstadoPedido("ENTREGADO");
+                pedido.setEstadoPedido(ENTREGADO);
 
                 controladorPedidos.escribirMensaje("✅ [ÉXITO] ¡Pedido #" + pedido.getIdPedido() + " ha sido ENTREGADO por [" + nombreRepartidor + "]!");
 

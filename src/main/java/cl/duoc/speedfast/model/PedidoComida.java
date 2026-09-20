@@ -2,10 +2,10 @@ package cl.duoc.speedfast.model;
 
 public class PedidoComida extends Pedido {
 
-    private boolean comidaEnBuenEstado;
+    private final boolean comidaEnBuenEstado;
 
     public PedidoComida(String idPedido, String direccionEntrega, boolean comidaEnBuenEstado) {
-        super("COMIDA", idPedido, direccionEntrega);
+        super(TipoPedido.COMIDA, idPedido, direccionEntrega);
         this.comidaEnBuenEstado = comidaEnBuenEstado;
     }
 

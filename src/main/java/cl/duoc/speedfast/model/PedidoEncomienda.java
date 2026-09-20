@@ -6,7 +6,7 @@ public class PedidoEncomienda extends Pedido {
     private final double pesoEncomienda;
 
     public PedidoEncomienda(String idPedido, String direccionEntrega, double pesoEncomienda) {
-        super("ENCOMIENDA", idPedido, direccionEntrega);
+        super(TipoPedido.ENCOMIENDA, idPedido, direccionEntrega);
 
         if (pesoEncomienda <= 0) {
             throw new IllegalArgumentException("El peso de la encomienda debe ser válido.");
