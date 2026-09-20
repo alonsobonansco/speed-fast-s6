@@ -22,7 +22,7 @@ dependencias unidireccional y el patrón *Observer*:
 #### Orquestación Principal (`ControladorPrincipal`)
 
 * Actúa como el despachador central de la suite.
-* Escucha los eventos de los botones de la `VentanaPrincipal` mediante listeners semánticos explicitos (
+* Escucha los eventos de los botones de la `VentanaPrincipal` mediante listeners semánticos explícitos (
   `addRegistrarPedidoListener`, etc.).
 * Al gatillar una acción, valida la existencia y visibilidad de las ventanas secundarias (`isDisplayable()`) para
   asegurar el control de instancias únicas en la memoria RAM.
