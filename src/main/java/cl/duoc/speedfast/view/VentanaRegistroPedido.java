@@ -10,9 +10,13 @@ public class VentanaRegistroPedido extends JFrame {
     private JTextField idTextField;
     private JTextField direccionTextField;
     private JComboBox<String> tipoComboBox;
-
     private JButton guardarButton;
     private JButton atrasButton;
+
+    private JPanel panelDinamico;
+    private JLabel etiquetaDinamica;
+    private JTextField campoDinamicoText;
+    private JCheckBox campoDinamicoCheck;
 
     public VentanaRegistroPedido() {
         setTitle("SpeedFast App");
@@ -40,13 +44,20 @@ public class VentanaRegistroPedido extends JFrame {
 
         guardarButton = new JButton("Guardar");
         atrasButton = new JButton("Atrás");
+
+        panelDinamico = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        etiquetaDinamica = new JLabel();
+        campoDinamicoText = new JTextField(15);
+        campoDinamicoCheck = new JCheckBox("¿Comida en buen estado?");
+
+        tipoComboBox.addActionListener(e -> actualizarFormularioDinamico());
     }
 
     public void construirLayout() {
         add(tituloLabel, BorderLayout.NORTH);
 
         JPanel panelFormulario = new JPanel(new GridLayout(3, 2, 10, 20));
-        panelFormulario.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        panelFormulario.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
         panelFormulario.add(new JLabel("ID del Pedido:"));
         panelFormulario.add(idTextField);
@@ -57,13 +68,51 @@ public class VentanaRegistroPedido extends JFrame {
         panelFormulario.add(new JLabel("Tipo de Pedido:"));
         panelFormulario.add(tipoComboBox);
 
-        add(panelFormulario, BorderLayout.CENTER);
+        actualizarFormularioDinamico();
+
+        JPanel contenedorCamposCompactos = new JPanel(new GridLayout(2, 1, 0, 10));
+        contenedorCamposCompactos.add(panelFormulario);
+        contenedorCamposCompactos.add(panelDinamico);
+
+        JPanel panelCentro = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
+        panelCentro.add(contenedorCamposCompactos);
+
+        add(panelCentro, BorderLayout.CENTER);
 
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
         panelBotones.add(guardarButton);
         panelBotones.add(atrasButton);
 
         add(panelBotones, BorderLayout.SOUTH);
+    }
+
+    private void actualizarFormularioDinamico() {
+        String seleccion = (String) tipoComboBox.getSelectedItem();
+
+        panelDinamico.removeAll();
+        campoDinamicoText.setText("");
+        campoDinamicoCheck.setSelected(true);
+
+        if (seleccion != null) {
+            switch (seleccion.toUpperCase()) {
+                case "COMIDA" -> {
+                    panelDinamico.add(campoDinamicoCheck);
+                }
+                case "EXPRESS" -> {
+                    etiquetaDinamica.setText("Distancia del envpio (Km):");
+                    panelDinamico.add(etiquetaDinamica);
+                    panelDinamico.add(campoDinamicoText);
+                }
+                case "ENCOMIENDA" -> {
+                    etiquetaDinamica.setText("Peso del paquete (kg):");
+                    panelDinamico.add(etiquetaDinamica);
+                    panelDinamico.add(campoDinamicoText);
+                }
+            }
+        }
+
+        panelDinamico.revalidate();
+        panelDinamico.repaint();
     }
 
     public String getIdPedido() {
