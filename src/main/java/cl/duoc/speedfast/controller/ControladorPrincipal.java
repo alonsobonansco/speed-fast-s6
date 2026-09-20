@@ -1,7 +1,10 @@
 package cl.duoc.speedfast.controller;
 
 import cl.duoc.speedfast.model.Pedido;
-import cl.duoc.speedfast.view.*;
+import cl.duoc.speedfast.view.VentanaListaPedidos;
+import cl.duoc.speedfast.view.VentanaPrincipal;
+import cl.duoc.speedfast.view.VentanaRegistroPedido;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,35 +24,39 @@ public class ControladorPrincipal {
     }
 
     private void inicializarListeners() {
-        ventanaPrincipal.addRegistrarPedidoListener(e -> {
-            if (ventanaRegistroPedido == null || !ventanaRegistroPedido.isDisplayable()) {
-                ventanaRegistroPedido = new VentanaRegistroPedido();
+        ventanaPrincipal.addRegistrarPedidoListener(e -> ejecutarRegistroPedido());
+        ventanaPrincipal.addListarPedidosListener(e -> ejecutarListarPedidos());
+        ventanaPrincipal.addIniciarEntregasListener(e -> ejecutarIniciarEntregas());
+    }
 
-                new ControladorRegistro(ventanaRegistroPedido, listaPedidos);
+    private void ejecutarRegistroPedido() {
+        if (ventanaRegistroPedido == null || !ventanaRegistroPedido.isDisplayable()) {
+            ventanaRegistroPedido = new VentanaRegistroPedido();
 
-                ventanaRegistroPedido.setVisible(true);
-            } else {
-                ventanaRegistroPedido.toFront();
-                ventanaRegistroPedido.requestFocus();
-            }
-        });
+            new ControladorRegistro(ventanaRegistroPedido, listaPedidos);
 
-        ventanaPrincipal.addListarPedidosListener(e -> {
-            if (ventanaListaPedidos == null || !ventanaListaPedidos.isDisplayable()) {
-                ventanaListaPedidos = new VentanaListaPedidos();
-            }
+            ventanaRegistroPedido.setVisible(true);
+        } else {
+            ventanaRegistroPedido.toFront();
+            ventanaRegistroPedido.requestFocus();
+        }
+    }
 
-            new ControladorLista(ventanaListaPedidos, listaPedidos);
+    private void ejecutarListarPedidos() {
+        if (ventanaListaPedidos == null || !ventanaListaPedidos.isDisplayable()) {
+            ventanaListaPedidos = new VentanaListaPedidos();
+        }
 
-            ventanaListaPedidos.setVisible(true);
-            ventanaListaPedidos.toFront();
-            ventanaListaPedidos.requestFocus();
-        });
+        new ControladorLista(ventanaListaPedidos, listaPedidos);
 
-        ventanaPrincipal.addIniciarEntregasListener(e -> {
-            ControladorPedidos controladorPedidos = new ControladorPedidos();
-            controladorPedidos.setLogListener(ventanaPrincipal::appendLog);
-            controladorPedidos.iniciarSimulacionReparto(listaPedidos);
-        });
+        ventanaListaPedidos.setVisible(true);
+        ventanaListaPedidos.toFront();
+        ventanaListaPedidos.requestFocus();
+    }
+
+    private void ejecutarIniciarEntregas() {
+        ControladorPedidos controladorPedidos = new ControladorPedidos();
+        controladorPedidos.setLogListener(ventanaPrincipal::appendLog);
+        controladorPedidos.iniciarSimulacionReparto(listaPedidos);
     }
 }
