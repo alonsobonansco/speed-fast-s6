@@ -158,6 +158,7 @@ public class VentanaRegistroPedido extends JFrame {
     public void limpiarFormulario() {
         idTextField.setText("");
         direccionTextField.setText("");
+        campoDinamicoText.setText("");
         idTextField.requestFocus();
     }
 }
