@@ -42,6 +42,11 @@ public class ControladorRegistro {
                 throw new IllegalArgumentException("El ID del pedido debe ser un número positivo.");
             }
 
+            if (existePedido(idPedido)) {
+                ventanaRegistroPedido.mostrarMensajeError("El ID del pedido ya existe. Por favor, ingrese un ID único.");
+                return;
+            }
+
             Pedido nuevoPedido = switch (tipoPedido.toUpperCase()) {
                 case "COMIDA" -> {
                     boolean comidaOK = ventanaRegistroPedido.getInputDinamicoCheck();
@@ -74,5 +79,14 @@ public class ControladorRegistro {
         } catch (IllegalArgumentException e) {
             ventanaRegistroPedido.mostrarMensajeError(e.getMessage());
         }
+    }
+    
+    private boolean existePedido(int idBuscado) {
+        for (Pedido pedido : listaPedidos) {
+            if (pedido.getIdPedido() == idBuscado) {
+                return true;
+            }
+        }
+        return false;
     }
 }
