@@ -14,6 +14,12 @@ public class Repartidor implements Runnable {
     private final ControladorPedidos controladorPedidos;
 
     public Repartidor(String nombreRepartidor, ControladorPedidos controladorPedidos) {
+        if (nombreRepartidor == null || nombreRepartidor.isEmpty()) {
+            throw new IllegalArgumentException("El nombre del repartidor no puede ser nulo o vacío");
+        }
+        if (controladorPedidos == null) {
+            throw new IllegalArgumentException("El controlador de pedidos no puede ser nulo");
+        }
         this.nombreRepartidor = nombreRepartidor;
         this.controladorPedidos = controladorPedidos;
     }

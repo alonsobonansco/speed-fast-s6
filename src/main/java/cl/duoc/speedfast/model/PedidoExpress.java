@@ -7,6 +7,10 @@ public class PedidoExpress extends Pedido {
 
     public PedidoExpress(int idPedido, String direccionEntrega, double distanciaKm) {
         super(TipoPedido.EXPRESS, idPedido, direccionEntrega);
+
+        if (distanciaKm <= 0) {
+            throw new IllegalArgumentException("La distancia del pedido debe ser válida.");
+        }
         this.distanciaKm = distanciaKm;
     }
 
