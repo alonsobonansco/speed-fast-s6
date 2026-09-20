@@ -28,24 +28,22 @@ public class Repartidor implements Runnable {
             }
 
             try {
-                // FASE 1: Carga y preparación
                 TimeUnit.MILLISECONDS.sleep(calcularTiempoAleatorio(1000, 1000));
-                controladorPedidos.escribirMensaje("📦 [CARGA] Repartidor [" + nombreRepartidor + "] retirando pedido #" + pedido.getIdPedido());
+                controladorPedidos.escribirMensaje("[CARGA] Repartidor [" + nombreRepartidor + "] retirando pedido #" + pedido.getIdPedido());
 
-                // FASE 2: Transporte en ruta
                 TimeUnit.MILLISECONDS.sleep(calcularTiempoAleatorio(1500, 1500));
 
-                controladorPedidos.escribirMensaje("🚚 [RUTA] Pedido #" + pedido.getIdPedido() + " se encuentra EN REPARTO por [" + nombreRepartidor + "]");
+                controladorPedidos.escribirMensaje("[RUTA] Pedido #" + pedido.getIdPedido() + " se encuentra en reparto");
 
-                // FASE 3: Entrega final exitosa
                 TimeUnit.MILLISECONDS.sleep(calcularTiempoAleatorio(1000, 1000));
 
-                // 🚀 NUEVO: El pedido pasa a estar entregado
                 pedido.setEstadoPedido(ENTREGADO);
 
-                controladorPedidos.escribirMensaje("✅ [ÉXITO] ¡Pedido #" + pedido.getIdPedido() + " ha sido ENTREGADO por [" + nombreRepartidor + "]!");
+                controladorPedidos.escribirMensaje("[ENTREGA] Pedido #" + pedido.getIdPedido() + " ha sido entregado por [" + nombreRepartidor + "]");
 
             } catch (InterruptedException e) {
+                controladorPedidos.escribirMensaje("Entrega interrumpida");
+
                 Thread.currentThread().interrupt();
                 break;
             }

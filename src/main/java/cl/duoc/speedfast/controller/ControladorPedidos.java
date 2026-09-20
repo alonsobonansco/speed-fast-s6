@@ -48,7 +48,7 @@ public class ControladorPedidos {
                         default -> "Tipo de pedido desconocido.";
                     };
 
-                    escribirMensaje("Pedido #" + pedido.getIdPedido() + " [RECHAZADO]. Motivo: " + motivo);
+                    escribirMensaje("[RECHAZADO] Pedido #" + pedido.getIdPedido() + ". Motivo: " + motivo);
                 }
             }
         }
