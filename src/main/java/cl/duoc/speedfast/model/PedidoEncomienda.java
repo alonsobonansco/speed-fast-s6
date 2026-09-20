@@ -5,7 +5,7 @@ public class PedidoEncomienda extends Pedido {
     private static final double CAPACIDAD_MAXIMA_KG = 40.0;
     private final double pesoEncomienda;
 
-    public PedidoEncomienda(String idPedido, String direccionEntrega, double pesoEncomienda) {
+    public PedidoEncomienda(int idPedido, String direccionEntrega, double pesoEncomienda) {
         super(TipoPedido.ENCOMIENDA, idPedido, direccionEntrega);
 
         if (pesoEncomienda <= 0) {

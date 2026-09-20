@@ -5,7 +5,7 @@ public class PedidoExpress extends Pedido {
     private static final double LIMITE_DISTANCIA_KM = 20.0;
     private final double distanciaKm;
 
-    public PedidoExpress(String idPedido, String direccionEntrega, double distanciaKm) {
+    public PedidoExpress(int idPedido, String direccionEntrega, double distanciaKm) {
         super(TipoPedido.EXPRESS, idPedido, direccionEntrega);
         this.distanciaKm = distanciaKm;
     }

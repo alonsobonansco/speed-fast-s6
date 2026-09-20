@@ -4,7 +4,7 @@ public class PedidoComida extends Pedido {
 
     private final boolean comidaEnBuenEstado;
 
-    public PedidoComida(String idPedido, String direccionEntrega, boolean comidaEnBuenEstado) {
+    public PedidoComida(int idPedido, String direccionEntrega, boolean comidaEnBuenEstado) {
         super(TipoPedido.COMIDA, idPedido, direccionEntrega);
         this.comidaEnBuenEstado = comidaEnBuenEstado;
     }

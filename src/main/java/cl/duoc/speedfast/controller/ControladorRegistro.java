@@ -27,13 +27,19 @@ public class ControladorRegistro {
 
     private void procesarGuardado() {
         try {
-            String idPedido = ventanaRegistroPedido.getIdPedido();
+            String idPedidoStr = ventanaRegistroPedido.getIdPedido();
             String direccionEntrega = ventanaRegistroPedido.getDireccionEntrega();
             String tipoPedido = ventanaRegistroPedido.getTipoPedido();
 
-            if (idPedido.isBlank() || direccionEntrega.isBlank()) {
+            if (idPedidoStr.isBlank() || direccionEntrega.isBlank()) {
                 ventanaRegistroPedido.mostrarMensajeError("Todos los campos son obligatorios.");
                 return;
+            }
+
+            int idPedido = Integer.parseInt(idPedidoStr);
+
+            if (idPedido <= 0) {
+                throw new IllegalArgumentException("El ID del pedido debe ser un número positivo.");
             }
 
             Pedido nuevoPedido = switch (tipoPedido.toUpperCase()) {
