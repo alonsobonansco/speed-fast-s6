@@ -14,22 +14,22 @@ public class PedidoExpress extends Pedido {
         return distanciaKm;
     }
 
+    public static double getDistanciaMaximaKm() {
+        return LIMITE_DISTANCIA_KM;
+    }
+
     @Override
     public boolean validarPedido() {
-        System.out.println("Verificando que la distancia esté dentro del límite permitido...");
-
         if (getDistanciaKm() > LIMITE_DISTANCIA_KM) {
-            System.out.println("[ERROR] No es posible realizar un envío express por la distancia.\n");
-            //this.cancelar();
+            this.cancelar();
             return false;
         }
 
-        System.out.println("[OK] Distancia dentro del límite.\n");
         return true;
     }
 
     @Override
     public String getDetalleEspecifico() {
-        return "Distancia dentro del límite permitido";
+        return distanciaKm + " km";
     }
 }

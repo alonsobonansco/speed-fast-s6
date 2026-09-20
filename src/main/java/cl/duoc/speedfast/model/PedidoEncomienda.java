@@ -14,22 +14,22 @@ public class PedidoEncomienda extends Pedido {
         this.pesoEncomienda = pesoEncomienda;
     }
 
+    public static double getCapacidadMaximaKg() {
+        return CAPACIDAD_MAXIMA_KG;
+    }
+
     @Override
     public boolean validarPedido() {
-        System.out.println("Verificando que el peso de la encomienda no exceda el límite...");
-
         if (pesoEncomienda > CAPACIDAD_MAXIMA_KG) {
-            System.out.println("[ERROR] El peso de la encomienda supera el límite permitido.\n");
             this.cancelar();
             return false;
         }
 
-        System.out.println("[OK] Peso de la encomienda permitido.\n");
         return true;
     }
 
     @Override
     public String getDetalleEspecifico() {
-        return "Peso de la encomienda dentro del límite permitido";
+        return pesoEncomienda + " kg";
     }
 }

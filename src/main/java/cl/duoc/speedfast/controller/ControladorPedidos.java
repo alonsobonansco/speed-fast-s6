@@ -1,6 +1,8 @@
 package cl.duoc.speedfast.controller;
 
 import cl.duoc.speedfast.model.Pedido;
+import cl.duoc.speedfast.model.PedidoEncomienda;
+import cl.duoc.speedfast.model.PedidoExpress;
 import cl.duoc.speedfast.service.LogListener;
 import cl.duoc.speedfast.service.Repartidor;
 
@@ -34,7 +36,18 @@ public class ControladorPedidos {
                 if (pedido.validarPedido()) {
                     agregarPedido(pedido);
                 } else {
-                    escribirMensaje("[ERROR] Pedido #" + pedido.getIdPedido() + " no cumple con los requisitos de validación y será omitido.");
+                    String motivo = switch (pedido.getTipoPedido().toUpperCase()) {
+                        case "COMIDA" -> "Comida en mal estado.";
+                        case "ENCOMIENDA" -> "El peso excede el límite máximo de " +
+                                PedidoEncomienda.getCapacidadMaximaKg() + " kg. " +
+                                "(Ingresado: " + pedido.getDetalleEspecifico() + " kg)";
+                        case "EXPRESS" ->
+                                "La distancia excede el límite máximo de " +
+                                PedidoExpress.getDistanciaMaximaKm() + " km.";
+                        default -> "Tipo de pedido desconocido.";
+                    };
+
+                    escribirMensaje("Pedido #" + pedido.getIdPedido() + " [RECHAZADO]. Motivo: " + motivo);
                 }
             }
         }

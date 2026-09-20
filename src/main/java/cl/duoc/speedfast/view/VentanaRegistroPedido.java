@@ -99,7 +99,7 @@ public class VentanaRegistroPedido extends JFrame {
                     panelDinamico.add(campoDinamicoCheck);
                 }
                 case "EXPRESS" -> {
-                    etiquetaDinamica.setText("Distancia del envpio (Km):");
+                    etiquetaDinamica.setText("Distancia del envío (Km):");
                     panelDinamico.add(etiquetaDinamica);
                     panelDinamico.add(campoDinamicoText);
                 }
@@ -131,8 +131,13 @@ public class VentanaRegistroPedido extends JFrame {
         this.dispose();
     }
 
-    public String getInputDinamicoTexto() { return campoDinamicoText.getText().trim(); }
-    public boolean getInputDinamicoCheck() { return campoDinamicoCheck.isSelected(); }
+    public String getInputDinamicoTexto() {
+        return campoDinamicoText.getText().trim();
+    }
+
+    public boolean getInputDinamicoCheck() {
+        return campoDinamicoCheck.isSelected();
+    }
 
     public void addGuardarListener(ActionListener listener) {
         guardarButton.addActionListener(listener);

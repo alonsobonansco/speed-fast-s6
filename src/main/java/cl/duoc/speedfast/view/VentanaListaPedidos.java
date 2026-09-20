@@ -78,7 +78,7 @@ public class VentanaListaPedidos extends JFrame {
                     pedido.getIdPedido(),
                     pedido.getDireccionEntrega(),
                     pedido.getTipoPedido(),
-                    "N/A",
+                    pedido.getDetalleEspecifico(),
                     pedido.getEstadoPedido()
             };
 
