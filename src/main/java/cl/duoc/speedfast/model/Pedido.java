@@ -1,6 +1,6 @@
 package cl.duoc.speedfast.model;
 
-public abstract class Pedido implements Despachable, Cancelable {
+public abstract class Pedido implements Cancelable {
 
     private final String tipoPedido;
     private final String idPedido;
@@ -19,19 +19,8 @@ public abstract class Pedido implements Despachable, Cancelable {
     }
 
     @Override
-    public void despachar() {
-        if (!pedidoActivo) {
-            System.out.println("No se puede despachar un pedido cancelado.\n");
-            return;
-        }
-
-        System.out.println("→ " + getTipoPedido() + " #" + getIdPedido() + " listo para reparto.");
-    }
-
-    @Override
     public void cancelar() {
         if (!pedidoActivo) {
-            System.out.println("- El pedido #" + idPedido + " ya se encuentra cancelado.\n");
             return;
         }
 
@@ -58,10 +47,6 @@ public abstract class Pedido implements Despachable, Cancelable {
             throw new IllegalArgumentException("La dirección de entrega debe ser válida.");
         }
         this.direccionEntrega = direccionEntrega;
-    }
-
-    public boolean isPedidoActivo() {
-        return pedidoActivo;
     }
 
     public String getEstadoPedido() {
