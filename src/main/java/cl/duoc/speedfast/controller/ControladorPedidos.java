@@ -12,6 +12,11 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * Orquestador y central del motor logístico concurrente.
+ * Administra el andén de despacho seguro y coordina el ciclo de vida asíncrono
+ * de los hilos de los trabajadores mediante el patrón Productor-Consumidor.
+ */
 public class ControladorPedidos {
 
     private final BlockingQueue<Pedido> pedidosPendientes = new LinkedBlockingQueue<>();
@@ -22,6 +27,13 @@ public class ControladorPedidos {
         this.logListener = logListener;
     }
 
+    /**
+     * Filtra los pedidos pendientes del historial permanente mediante control de calidad.
+     * Los paquetes aprobados se inyectan en la cola concurrente y se encienden
+     * los hilos de los trabajadores en segundo plano si existen tareas aptas.
+     *
+     * @param listaPedidos Colección histórica de persistencia temporal en memoria.
+     */
     public void iniciarSimulacionReparto(List<Pedido> listaPedidos) {
         if (listaPedidos == null || listaPedidos.isEmpty()) {
             escribirMensaje("[AVISO] No hay pedidos registrados en el sistema para despachar.");
@@ -73,10 +85,21 @@ public class ControladorPedidos {
         ));
     }
 
+    /**
+     * Extrae de forma destructiva y atómica el siguiente paquete de la cola.
+     * Es invocado concurrentemente por múltiples hilos de reparto sin riesgo de doble retiro.
+     *
+     * @return El {@link Pedido} retirado, o {@code null} si la lista está vacía.
+     */
     public Pedido retirarPedido() {
         return pedidosPendientes.poll();
     }
 
+    /**
+     * Decrementa el contador de repartidores activos mediante exclusión mutua.
+     * El último hilo vivo en apagar su motor tiene la responsabilidad de
+     * estampar el aviso único de fin de jornada en la bitácora.
+     */
     public synchronized void finalizarSimulacion() {
         this.repartidoresActivos--;
         if (repartidoresActivos == 0) {
@@ -84,6 +107,12 @@ public class ControladorPedidos {
         }
     }
 
+    /**
+     * Canaliza los mensajes asíncronos hacia la interfaz gráfica de forma segura.
+     * Protege el orden cronológico evitando colisiones o condiciones de carrera de hilos.
+     *
+     * @param mensaje Cadena de caracteres con el registro lógico a desplegar.
+     */
     public synchronized void escribirMensaje(String mensaje) {
         if (logListener != null) {
             logListener.registrarMensaje(mensaje);

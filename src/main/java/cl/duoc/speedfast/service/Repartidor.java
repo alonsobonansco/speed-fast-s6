@@ -8,11 +8,22 @@ import java.util.concurrent.TimeUnit;
 
 import static cl.duoc.speedfast.model.EstadoPedido.ENTREGADO;
 
+/**
+ * Hilo de ejecución independiente (Worker Thread) del sistema logístico.
+ * Consume de forma destructiva y asíncrona la cola de despachos concurrentes,
+ * simulando las fases de transporte en ruta mediante pausas dinámicas.
+ */
 public class Repartidor implements Runnable {
 
     private final String nombreRepartidor;
     private final ControladorPedidos controladorPedidos;
 
+    /**
+     * Instancia un trabajador acoplando la validación defensiva de sus recursos.
+     *
+     * @param nombreRepartidor   Nombre del trabajador.
+     * @param controladorPedidos Central de andenes y exclusión mutua de logs.
+     */
     public Repartidor(String nombreRepartidor, ControladorPedidos controladorPedidos) {
         if (nombreRepartidor == null || nombreRepartidor.isEmpty()) {
             throw new IllegalArgumentException("El nombre del repartidor no puede ser nulo o vacío");
@@ -24,6 +35,11 @@ public class Repartidor implements Runnable {
         this.controladorPedidos = controladorPedidos;
     }
 
+    /**
+     * Ciclo de vida activo del hilo secundario.
+     * Remueve pedidos de la cola de forma segura, procesa las fases físicas mediante
+     * pausas escalonadas y maneja interrupciones abruptas de la CPU de forma pacífica.
+     */
     @Override
     public void run() {
         while (true) {

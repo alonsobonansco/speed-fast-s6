@@ -8,11 +8,22 @@ import cl.duoc.speedfast.view.VentanaRegistroPedido;
 
 import java.util.List;
 
+/**
+ * Gestor del ciclo de vida y validación del formulario de ingresos.
+ * Procesa la captura de datos en la interfaz dinámica, aplica el escudo
+ * defensivo contra formatos inválidos y restringe duplicados en el historial.
+ */
 public class ControladorRegistro {
 
     private final VentanaRegistroPedido ventanaRegistroPedido;
     private final List<Pedido> listaPedidos;
 
+    /**
+     * Enlaza la interfaz gráfica de registro con la lista central de memoria.
+     *
+     * @param ventanaRegistroPedido Instancia del formulario dinámico de ingreso.
+     * @param listaPedidos          Colección histórica de persistencia compartida.
+     */
     public ControladorRegistro(VentanaRegistroPedido ventanaRegistroPedido, List<Pedido> listaPedidos) {
         this.ventanaRegistroPedido = ventanaRegistroPedido;
         this.listaPedidos = listaPedidos;
@@ -25,6 +36,11 @@ public class ControladorRegistro {
         ventanaRegistroPedido.addGuardarListener(e -> procesarGuardado());
     }
 
+    /**
+     * Extrae, valida y procesa los datos del formulario gráfico.
+     * Aplica un flujo defensivo multifase (campos vacíos, IDs negativos, duplicados
+     * y errores de casteo numérico) antes de instanciar la subclase polimórfica.
+     */
     private void procesarGuardado() {
         try {
             String idPedidoStr = ventanaRegistroPedido.getIdPedido();

@@ -9,6 +9,11 @@ import cl.duoc.speedfast.view.VentanaRegistroPedido;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Despachador central y orquestador principal de la aplicación.
+ * Controla el ciclo de vida y visibilidad de las ventanas secundarias,
+ * manteniendo el historial de pedidos unificado en memoria RAM.
+ */
 public class ControladorPrincipal {
 
     private final VentanaPrincipal ventanaPrincipal;
@@ -16,6 +21,12 @@ public class ControladorPrincipal {
     private VentanaRegistroPedido ventanaRegistroPedido = null;
     private VentanaListaPedidos ventanaListaPedidos = null;
 
+    /**
+     * Inicializa la central de control acoplando la vista de comandos
+     * principal y reservando la lista de persistencia temporal.
+     *
+     * @param ventanaPrincipal Instancia de la interfaz gráfica principal.
+     */
     public ControladorPrincipal(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
         this.listaPedidos = new ArrayList<>();

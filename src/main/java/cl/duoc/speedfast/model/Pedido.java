@@ -1,5 +1,8 @@
 package cl.duoc.speedfast.model;
 
+/**
+ * Clase genérica de un pedido y superclase de subtipos de pedidos.
+ */
 public abstract class Pedido implements Cancelable {
 
     private final TipoPedido tipoPedido;
@@ -8,6 +11,15 @@ public abstract class Pedido implements Cancelable {
     private boolean pedidoActivo = true;
     private EstadoPedido estadoPedido = EstadoPedido.PENDIENTE;
 
+    /**
+     * Constructor que inicializa el estado base e inmutable de un pedido para las subclases.
+     *
+     * @param tipoPedido       El tipo de pedido.
+     * @param idPedido         El ID del pedido.
+     * @param direccionEntrega La dirección de entrega del pedido.
+     * @throws IllegalArgumentException Si el idPedido es menor o igual a cero,
+     *                                  o si la direccionEntrega es nula o vacía.
+     */
     public Pedido(TipoPedido tipoPedido, int idPedido, String direccionEntrega) {
         if (idPedido <= 0) {
             throw new IllegalArgumentException("El ID del pedido debe ser válido.");
@@ -18,6 +30,10 @@ public abstract class Pedido implements Cancelable {
         setDireccionEntrega(direccionEntrega);
     }
 
+    /**
+     * Cancela el pedido actual modificando su estado interno a falso.
+     * Cuenta con un escudo defensivo que bloquea solicitudes de anulación duplicadas.
+     */
     @Override
     public void cancelar() {
         if (!pedidoActivo) {
@@ -28,6 +44,12 @@ public abstract class Pedido implements Cancelable {
         estadoPedido = EstadoPedido.CANCELADO;
     }
 
+    /**
+     * Evalúa si las condiciones operativas de la subclase permiten el envío.
+     * Cada tipo de pedido implementa sus propias reglas de negocio.
+     *
+     * @return true si el pedido pasa los controles; false si es rechazado.
+     */
     public abstract boolean validarPedido();
 
     public TipoPedido getTipoPedido() {
@@ -57,5 +79,10 @@ public abstract class Pedido implements Cancelable {
         this.estadoPedido = estadoPedido;
     }
 
+    /**
+     * Obtiene un detalle específico del pedido, que varía según el tipo de pedido.
+     *
+     * @return Un string que representa el detalle específico del pedido.
+     */
     public abstract String getDetalleEspecifico();
 }

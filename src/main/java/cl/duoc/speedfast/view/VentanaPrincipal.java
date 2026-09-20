@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Interfaz gráfica principal de la suite y panel de comandos central.
+ * Alberga los accesos a los subformularios logísticos y despliega de forma
+ * cronológica las trazas asíncronas de la simulación mediante una consola integrada.
+ */
 public class VentanaPrincipal extends JFrame {
 
     private JButton registrarPedidoButton;
@@ -12,6 +17,9 @@ public class VentanaPrincipal extends JFrame {
     private JLabel tituloLabel;
     private JTextArea logTextArea;
 
+    /**
+     * Construye la ventana base del Panel de Control homogeneizando dimensiones fijas.
+     */
     public VentanaPrincipal() {
         setTitle("SpeedFast App");
         setSize(700, 500);
