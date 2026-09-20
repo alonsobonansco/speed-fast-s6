@@ -51,8 +51,7 @@ public class ControladorPedidos {
                     String motivo = switch (pedido.getTipoPedido()) {
                         case COMIDA -> "Comida en mal estado.";
                         case ENCOMIENDA -> "El peso excede el límite máximo de " +
-                                PedidoEncomienda.getCapacidadMaximaKg() + " kg. " +
-                                "(Ingresado: " + pedido.getDetalleEspecifico() + " kg)";
+                                PedidoEncomienda.getCapacidadMaximaKg() + " kg.";
                         case EXPRESS -> "La distancia excede el límite máximo de " +
                                 PedidoExpress.getDistanciaMaximaKm() + " km.";
                         default -> "Tipo de pedido desconocido.";
