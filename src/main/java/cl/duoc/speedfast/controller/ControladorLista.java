@@ -14,10 +14,15 @@ public class ControladorLista {
         this.ventanaListaPedidos = ventanaListaPedidos;
         this.listaPedidos = listaPedidos;
 
+        inicializarListeners();
         cargarDatosEnTabla();
     }
 
+    private void inicializarListeners() {
+        ventanaListaPedidos.setVolverAtrasListener(e -> ventanaListaPedidos.cerrarVentana());
+    }
+
     private void cargarDatosEnTabla() {
-        ventanaListaPedidos.actualizarTabla(listaPedidos);
+        this.ventanaListaPedidos.actualizarTabla(this.listaPedidos);
     }
 }

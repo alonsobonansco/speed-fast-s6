@@ -5,6 +5,7 @@ import cl.duoc.speedfast.model.Pedido;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class VentanaListaPedidos extends JFrame {
@@ -12,6 +13,7 @@ public class VentanaListaPedidos extends JFrame {
     private JLabel tituloLabel;
     private JTable tablaPedidos;
     private DefaultTableModel tablaModel;
+    private JButton atrasButton;
 
     public VentanaListaPedidos() {
         setTitle("Lista de Pedidos");
@@ -40,6 +42,8 @@ public class VentanaListaPedidos extends JFrame {
 
         tablaPedidos = new JTable(tablaModel);
         tablaPedidos.getTableHeader().setReorderingAllowed(false);
+
+        atrasButton = new JButton("Atrás");
     }
 
     public void construirLayout() {
@@ -52,6 +56,18 @@ public class VentanaListaPedidos extends JFrame {
         panelTabla.add(scrollPane, BorderLayout.CENTER);
 
         add(panelTabla, BorderLayout.CENTER);
+
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
+        panelBotones.add(atrasButton);
+        add(panelBotones, BorderLayout.SOUTH);
+    }
+
+    public void setVolverAtrasListener(ActionListener listener) {
+        atrasButton.addActionListener(listener);
+    }
+
+    public void cerrarVentana() {
+        this.dispose();
     }
 
     public void actualizarTabla(List<Pedido> listaPedidos) {
