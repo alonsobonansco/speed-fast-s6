@@ -19,7 +19,7 @@ public class ControladorLista {
     }
 
     private void inicializarListeners() {
-        ventanaListaPedidos.setVolverAtrasListener(e -> ventanaListaPedidos.cerrarVentana());
+        ventanaListaPedidos.addVolverAtrasListener(e -> ventanaListaPedidos.cerrarVentana());
     }
 
     private void cargarDatosEnTabla() {

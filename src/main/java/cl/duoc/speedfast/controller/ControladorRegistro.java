@@ -76,6 +76,8 @@ public class ControladorRegistro {
             ventanaRegistroPedido.mostrarMensajeConfirmacion("Pedido registrado exitosamente.");
             ventanaRegistroPedido.limpiarFormulario();
 
+        } catch (NumberFormatException e) {
+            ventanaRegistroPedido.mostrarMensajeError("Debe ingresar solo números en los campos que correspondan.");
         } catch (IllegalArgumentException e) {
             ventanaRegistroPedido.mostrarMensajeError(e.getMessage());
         }

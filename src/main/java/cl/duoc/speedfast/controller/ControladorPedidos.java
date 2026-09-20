@@ -86,7 +86,7 @@ public class ControladorPedidos {
 
     public synchronized void escribirMensaje(String mensaje) {
         if (logListener != null) {
-            logListener.onLog(mensaje);
+            logListener.registrarMensaje(mensaje);
         }
     }
 }

@@ -11,12 +11,12 @@ import java.util.List;
 public class VentanaListaPedidos extends JFrame {
 
     private JLabel tituloLabel;
-    private JTable tablaPedidos;
+    private JTable pedidosTable;
     private DefaultTableModel tablaModel;
     private JButton atrasButton;
 
     public VentanaListaPedidos() {
-        setTitle("Lista de Pedidos");
+        setTitle("SpeedFast App");
         setSize(700, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -40,8 +40,8 @@ public class VentanaListaPedidos extends JFrame {
             }
         };
 
-        tablaPedidos = new JTable(tablaModel);
-        tablaPedidos.getTableHeader().setReorderingAllowed(false);
+        pedidosTable = new JTable(tablaModel);
+        pedidosTable.getTableHeader().setReorderingAllowed(false);
 
         atrasButton = new JButton("Atrás");
     }
@@ -49,7 +49,7 @@ public class VentanaListaPedidos extends JFrame {
     public void construirLayout() {
         add(tituloLabel, BorderLayout.NORTH);
 
-        JScrollPane scrollPane = new JScrollPane(tablaPedidos);
+        JScrollPane scrollPane = new JScrollPane(pedidosTable);
 
         JPanel panelTabla = new JPanel(new BorderLayout());
         panelTabla.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
@@ -62,7 +62,7 @@ public class VentanaListaPedidos extends JFrame {
         add(panelBotones, BorderLayout.SOUTH);
     }
 
-    public void setVolverAtrasListener(ActionListener listener) {
+    public void addVolverAtrasListener(ActionListener listener) {
         atrasButton.addActionListener(listener);
     }
 

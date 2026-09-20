@@ -1,5 +1,6 @@
 package cl.duoc.speedfast.service;
 
+@FunctionalInterface
 public interface LogListener {
-    void onLog(String mensaje);
+    void registrarMensaje(String mensaje);
 }
