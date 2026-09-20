@@ -82,7 +82,7 @@ public class ControladorRegistro {
             ventanaRegistroPedido.mostrarMensajeError(e.getMessage());
         }
     }
-    
+
     private boolean existePedido(int idBuscado) {
         for (Pedido pedido : listaPedidos) {
             if (pedido.getIdPedido() == idBuscado) {

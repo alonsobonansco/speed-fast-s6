@@ -1,4 +1,4 @@
-package cl.duoc.speedfast.service;
+package cl.duoc.speedfast.event;
 
 @FunctionalInterface
 public interface LogListener {

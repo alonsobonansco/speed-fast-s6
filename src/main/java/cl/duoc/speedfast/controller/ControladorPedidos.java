@@ -4,7 +4,7 @@ import cl.duoc.speedfast.model.EstadoPedido;
 import cl.duoc.speedfast.model.Pedido;
 import cl.duoc.speedfast.model.PedidoEncomienda;
 import cl.duoc.speedfast.model.PedidoExpress;
-import cl.duoc.speedfast.service.LogListener;
+import cl.duoc.speedfast.event.LogListener;
 import cl.duoc.speedfast.service.Repartidor;
 
 import java.util.List;
