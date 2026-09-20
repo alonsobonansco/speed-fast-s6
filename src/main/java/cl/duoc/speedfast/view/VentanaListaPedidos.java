@@ -8,6 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Interfaz gráfica encargada de renderizar la grilla de datos histórica.
+ * Presenta de forma tabular los registros del sistema mediante una grilla
+ * de cinco columnas acopladas de manera polimórfica al dominio de negocio.
+ */
 public class VentanaListaPedidos extends JFrame {
 
     private JLabel tituloLabel;
@@ -15,6 +20,9 @@ public class VentanaListaPedidos extends JFrame {
     private DefaultTableModel tablaModel;
     private JButton atrasButton;
 
+    /**
+     * Construye la ventana de historial aplicando dimensiones e inmutabilidad visual.
+     */
     public VentanaListaPedidos() {
         setTitle("SpeedFast App");
         setSize(700, 500);

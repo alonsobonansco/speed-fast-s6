@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Interfaz gráfica encargada del registro y captura de datos del sistema.
+ * Implementa una arquitectura de formulario dinámico guiado por eventos para
+ * inyectar componentes variables en tiempo de ejecución según el tipo seleccionado.
+ */
 public class VentanaRegistroPedido extends JFrame {
 
     private JLabel tituloLabel;
@@ -18,6 +23,9 @@ public class VentanaRegistroPedido extends JFrame {
     private JTextField campoDinamicoText;
     private JCheckBox campoDinamicoCheck;
 
+    /**
+     * Construye la ventana del formulario parametrizando sus dimensiones fijas.
+     */
     public VentanaRegistroPedido() {
         setTitle("SpeedFast App");
         setSize(700, 500);
@@ -86,6 +94,11 @@ public class VentanaRegistroPedido extends JFrame {
         add(panelBotones, BorderLayout.SOUTH);
     }
 
+    /**
+     * Muta de forma interactiva la interfaz gráfica del subpanel variable.
+     * Remueve los componentes anteriores, limpia las referencias visuales
+     * y redibuja la pantalla gatillando un reajuste geométrico fluido de Swing.
+     */
     private void actualizarFormularioDinamico() {
         String seleccion = (String) tipoComboBox.getSelectedItem();
 
