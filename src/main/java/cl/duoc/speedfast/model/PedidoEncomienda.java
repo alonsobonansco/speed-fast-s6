@@ -1,7 +1,7 @@
 package cl.duoc.speedfast.model;
 
 /**
- * Subclase de Pedido. Sus atributos son CAPACIDAD_MAXIMA_KG y pesoEncomienda: el primero es
+ * Sus atributos son CAPACIDAD_MAXIMA_KG y pesoEncomienda: el primero es
  * el valor máximo permitido para el transporte y el personal; el segundo, el peso real
  * de la encomienda.
  */

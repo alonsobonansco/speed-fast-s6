@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Interfaz gráfica encargada de renderizar la grilla de datos histórica.
- * Presenta de forma tabular los registros del sistema mediante una grilla
+ * Presenta de forma tabular los registros del sistema mediante un grid
  * de cinco columnas acopladas de manera polimórfica al dominio de negocio.
  */
 public class VentanaListaPedidos extends JFrame {

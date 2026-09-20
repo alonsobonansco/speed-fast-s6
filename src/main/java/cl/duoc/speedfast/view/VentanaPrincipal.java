@@ -34,7 +34,6 @@ public class VentanaPrincipal extends JFrame {
 
     private void inicializarComponentes() {
         tituloLabel = new JLabel("Panel de Control SpeedFast", SwingConstants.CENTER);
-        tituloLabel.setBounds(50, 20, 300, 40);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
         tituloLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
 
@@ -56,7 +55,6 @@ public class VentanaPrincipal extends JFrame {
         logTextArea.setEditable(false);
         logTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
-
 
     private void construirLayout() {
         JPanel panelBotones = new JPanel();
@@ -103,6 +101,12 @@ public class VentanaPrincipal extends JFrame {
         iniciarEntregasButton.addActionListener(listener);
     }
 
+    /**
+     * Concatena un registro de texto en la consola de la interfaz gráfica de usuario.
+     * Fuerza la ejecución seguro-concurrente dentro del Event Dispatch Thread (EDT) de Swing.
+     *
+     * @param mensaje Cadena de caracteres con la traza de simulación a anexar.
+     */
     public void appendLog(String mensaje) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             logTextArea.append(mensaje + "\n");

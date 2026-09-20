@@ -5,7 +5,6 @@ import cl.duoc.speedfast.view.VentanaListaPedidos;
 import cl.duoc.speedfast.view.VentanaPrincipal;
 import cl.duoc.speedfast.view.VentanaRegistroPedido;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -7,6 +7,7 @@ package cl.duoc.speedfast.event;
  */
 @FunctionalInterface
 public interface LogListener {
+
     /**
      * Canaliza y despacha un registro lógico de la simulación concurrente.
      *

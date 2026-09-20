@@ -1,7 +1,7 @@
 package cl.duoc.speedfast.model;
 
 /**
- * Subclase de Pedido. Su atributos propios son LIMITE_DISTANCIA_KM y distanciaKm: el primero es
+ * Sus atributos propios son LIMITE_DISTANCIA_KM y distanciaKm: el primero es
  * el valor límite que un repartidor puede estar del objetivo para realizar una entrega express; el segundo,
  * la distancia real hasta la dirección de entrega.
  */

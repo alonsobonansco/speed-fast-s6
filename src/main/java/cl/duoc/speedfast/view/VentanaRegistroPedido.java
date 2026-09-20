@@ -39,7 +39,6 @@ public class VentanaRegistroPedido extends JFrame {
     }
 
     public void inicializarComponentes() {
-
         tituloLabel = new JLabel("Formulario de Registros de Pedidos", SwingConstants.CENTER);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
         tituloLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 5, 10));
@@ -54,6 +53,7 @@ public class VentanaRegistroPedido extends JFrame {
         atrasButton = new JButton("Atrás");
 
         panelDinamico = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+
         etiquetaDinamica = new JLabel();
         campoDinamicoText = new JTextField(15);
         campoDinamicoCheck = new JCheckBox("¿Comida en buen estado?");

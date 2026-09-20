@@ -80,7 +80,7 @@ public abstract class Pedido implements Cancelable {
     }
 
     /**
-     * Obtiene un detalle específico del pedido, que varía según el tipo de pedido.
+     * Obtiene un detalle específico del pedido.
      *
      * @return Un string que representa el detalle específico del pedido.
      */
