@@ -37,9 +37,26 @@ public class ControladorRegistro {
             }
 
             Pedido nuevoPedido = switch (tipoPedido.toUpperCase()) {
-                case "COMIDA" -> new PedidoComida(idPedido, direccionEntrega, true);
-                case "EXPRESS" -> new PedidoExpress(idPedido, direccionEntrega, 10.0);
-                case "ENCOMIENDA" -> new PedidoEncomienda(idPedido, direccionEntrega, 20.0);
+                case "COMIDA" -> {
+                    boolean comidaOK = ventanaRegistroPedido.getInputDinamicoCheck();
+                    yield new PedidoComida(idPedido, direccionEntrega, comidaOK);
+                }
+                case "EXPRESS" -> {
+                    String distanciaStr = ventanaRegistroPedido.getInputDinamicoTexto();
+                    if (distanciaStr.isBlank()) {
+                        throw new IllegalArgumentException("La distancia del pedido no puede estar vacía.");
+                    }
+                    double distancia = Double.parseDouble(distanciaStr);
+                    yield new PedidoExpress(idPedido, direccionEntrega, distancia);
+                }
+                case "ENCOMIENDA" -> {
+                    String pesoPedidoStr = ventanaRegistroPedido.getInputDinamicoTexto();
+                    if (pesoPedidoStr.isBlank()) {
+                        throw new IllegalArgumentException("El peso del pedido no puede estar vacío.");
+                    }
+                    double pesoPedido = Double.parseDouble(pesoPedidoStr);
+                    yield new PedidoEncomienda(idPedido, direccionEntrega, pesoPedido);
+                }
                 default -> throw new IllegalArgumentException("Tipo de pedido no válido.");
             };
 

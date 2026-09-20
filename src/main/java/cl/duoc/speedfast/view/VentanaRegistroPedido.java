@@ -131,6 +131,9 @@ public class VentanaRegistroPedido extends JFrame {
         this.dispose();
     }
 
+    public String getInputDinamicoTexto() { return campoDinamicoText.getText().trim(); }
+    public boolean getInputDinamicoCheck() { return campoDinamicoCheck.isSelected(); }
+
     public void addGuardarListener(ActionListener listener) {
         guardarButton.addActionListener(listener);
     }
