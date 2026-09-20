@@ -101,4 +101,10 @@ public class VentanaPrincipal extends JFrame {
             logTextArea.setCaretPosition(logTextArea.getDocument().getLength());
         });
     }
+
+    public void clearLog() {
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            logTextArea.setText("");
+        });
+    }
 }

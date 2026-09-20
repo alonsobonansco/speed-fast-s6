@@ -16,6 +16,7 @@ public class ControladorPedidos {
 
     private final BlockingQueue<Pedido> pedidosPendientes = new LinkedBlockingQueue<>();
     private LogListener logListener;
+    private int repartidoresActivos = 0;
 
     public void setLogListener(LogListener logListener) {
         this.logListener = logListener;
@@ -27,12 +28,10 @@ public class ControladorPedidos {
             return;
         }
 
-        escribirMensaje("\n --- INICIANDO REPARTO CONCURRENTE --- ");
-
         pedidosPendientes.clear();
 
         for (Pedido pedido : listaPedidos) {
-            if (pedido.getEstadoPedido()==  EstadoPedido.PENDIENTE) {
+            if (pedido.getEstadoPedido() == EstadoPedido.PENDIENTE) {
 
                 if (pedido.validarPedido()) {
                     agregarPedido(pedido);
@@ -42,8 +41,7 @@ public class ControladorPedidos {
                         case ENCOMIENDA -> "El peso excede el límite máximo de " +
                                 PedidoEncomienda.getCapacidadMaximaKg() + " kg. " +
                                 "(Ingresado: " + pedido.getDetalleEspecifico() + " kg)";
-                        case EXPRESS ->
-                                "La distancia excede el límite máximo de " +
+                        case EXPRESS -> "La distancia excede el límite máximo de " +
                                 PedidoExpress.getDistanciaMaximaKm() + " km.";
                         default -> "Tipo de pedido desconocido.";
                     };
@@ -53,7 +51,16 @@ public class ControladorPedidos {
             }
         }
 
+        if (pedidosPendientes.isEmpty()) {
+            escribirMensaje("[AVISO] No quedan pedidos pendientes por entregar.");
+            return;
+        }
+
+        escribirMensaje("\n --- INICIANDO REPARTO CONCURRENTE --- ");
+
         String[] nombresRepartidores = {"Juan", "María", "Carlos"};
+        this.repartidoresActivos = nombresRepartidores.length;
+
         for (String nombre : nombresRepartidores) {
             Thread hiloRepartidor = new Thread(new Repartidor(nombre, this));
             hiloRepartidor.start();
@@ -70,13 +77,16 @@ public class ControladorPedidos {
         return pedidosPendientes.poll();
     }
 
+    public synchronized void finalizarSimulacion() {
+        this.repartidoresActivos--;
+        if (repartidoresActivos == 0) {
+            escribirMensaje("\n[AVISO] Todos los pedidos han sido procesados.");
+        }
+    }
+
     public synchronized void escribirMensaje(String mensaje) {
         if (logListener != null) {
             logListener.onLog(mensaje);
         }
-    }
-
-    public boolean estaVacia() {
-        return pedidosPendientes.isEmpty();
     }
 }

@@ -30,6 +30,7 @@ public class ControladorPrincipal {
     }
 
     private void ejecutarRegistroPedido() {
+        ventanaPrincipal.clearLog();
         if (ventanaRegistroPedido == null || !ventanaRegistroPedido.isDisplayable()) {
             ventanaRegistroPedido = new VentanaRegistroPedido();
 
@@ -55,6 +56,7 @@ public class ControladorPrincipal {
     }
 
     private void ejecutarIniciarEntregas() {
+        ventanaPrincipal.clearLog();
         ControladorPedidos controladorPedidos = new ControladorPedidos();
         controladorPedidos.setLogListener(ventanaPrincipal::appendLog);
         controladorPedidos.iniciarSimulacionReparto(listaPedidos);

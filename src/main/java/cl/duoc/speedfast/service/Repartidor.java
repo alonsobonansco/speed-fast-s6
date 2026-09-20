@@ -48,6 +48,8 @@ public class Repartidor implements Runnable {
                 break;
             }
         }
+
+        controladorPedidos.finalizarSimulacion();
     }
 
     private int calcularTiempoAleatorio(int baseMilisegundos, int rangoAleatorio) {
